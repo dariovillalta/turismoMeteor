@@ -21,3 +21,5 @@ autopublish             # Publish all data to the clients (for prototyping)
 aldeed:collection2
 materialize:materialize
 iron:router
+dburles:google-maps
+mdg:geolocation

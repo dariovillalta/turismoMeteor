@@ -1,37 +1,14 @@
+<head>
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+
 <template name="homeMap">
-  <div class="parallax-container image">
-      <div class="parallax"> <h1>Titulo</h1> <img class="Imagen" alt="No sirve" src="images/26102.jpg"></div>
-  </div>
-  <div class="row">
-    <nav id="cbp-hrmenu" class="cbp-hrmenu">
-      <ul>
-        <li>
-          <a href="/">Ver Todas</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-<div class="row">
-  <div class="offset-s4 col s4">
-    <div class="card">
-      <div class="container center">
-        <h4>Bienvenido usuario</h4>
-        <div class="row">
-          <div class="input-field offset-s2 col s8">
-            <input id = "emailInput" type="text" class="validate">
-            <label for="emailInput">email</label>
-          </div>
-          <div class="input-field offset-s2 col s8">
-            <input id = "passwordInput" type="password" class="validate">
-            <label for="passwordInput">password</label>
-          </div>
-        </div>
-      </div>
-      <div class="container center">
-        <a id="login" class="waves-effect waves-light btn indigo"><i class="material-icons left">lock_open</i>LOGIN</a>
-      </div>
-      <br><br>
-    </div>
-  </div>
+<div id="googleMap"></div>
+<div class="map-container">
+  {{> googleMap name="map" options=mapOptions}}
 </div>
+<div id="googleMap"></div>
+  {{init}}
 </template>
