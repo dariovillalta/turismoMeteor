@@ -1,14 +1,8 @@
 <head>
   <script src="http://maps.googleapis.com/maps/api/js"></script>
-  <script src="http://www.google.com/jsapi"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
 <template name="homeMap">
-<div id="googleMap"></div>
-<div class="map-container">
-  {{> googleMap name="map" options=mapOptions}}
-</div>
-<div id="googleMap"></div>
-  {{init}}
+  <div id="googleMap"></div>
 </template>

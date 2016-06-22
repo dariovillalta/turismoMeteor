@@ -1,7 +1,39 @@
 <head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>cualquier otra cosa</title>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEavZeQ4EvoirjpeQlKX0V2s4DbLV39VI&libraries=places">
+  </script>
 </head>
 
 <body>
 </body>
+
+<template name="departmentMap">
+
+  <div id="googleMap" class="Map"></div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 id="placeName" class="center-align">Place</h4>
+      <p id="rating" class="left-align"><b>Rating:</b> </p>
+      <div> 
+        <p class="center-align"><b>Comments</b></p>
+        <div id="publish">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Ingresa tu comentario</label>
+          <div class="right-align">
+            <a id="post" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
+            <i class="material-icons left">launch</i>Publicar</a>
+          </div>
+        </div>
+        <div id="comments">
+          <div class="com"> <p class="center-align">hola</p> </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Get Directions</a>
+    </div>
+  </div>
+</template>

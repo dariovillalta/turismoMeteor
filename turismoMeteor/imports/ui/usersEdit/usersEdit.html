@@ -1,0 +1,47 @@
+<template name="usersEdit">
+	<div class="container fondo">
+		{{#each users}}
+		<div class="row">
+	        <div class="col s12">
+	          <div class="card adentro">
+	            <div class="card-image">
+	              <img src="images/maxresdefault.jpg">
+	              <span class="card-title">Agregar Lugar</span>
+	            </div>
+	            <div class="card-content">
+	            	<p>
+	            		<b>Id: </b>
+	            		<input id="idAdd" type="text" class="validate">
+          				<label for="idAdd">Ingrese el ID del lugar</label>
+	            	</p>
+					<p>
+						<b>Location: </b>
+						<div class="row">
+							<div class="col s6">
+								<input id="latitud" type="text" class="validate" placeholder="{{location.latitud}}">
+		      					<label for="latitud">latitud</label>
+							</div>
+							<div class="col s6">
+								<input id="longitud" type="text" class="validate" placeholder="{{location.longitud}}">
+		      					<label for="longitud">longitud</label>
+							</div>
+						</div>
+					</p>
+					<p>
+						<b>Rating: </b>
+						<p class="range-field">
+					      <input type="range" id="ratingAdd" min="0" max="5" />
+					      <label for="ratingAdd">Ingrese el rating del lugar</label>
+					    </p>
+					</p>
+					<div class="right-align card-action">
+		              <a id="post" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
+		              <i class="material-icons left">launch</i>Agregar</a>
+		            </div>
+	            </div>
+	          </div>
+	        </div>
+	    </div>
+	    {{/each}}
+	</div>
+</template>

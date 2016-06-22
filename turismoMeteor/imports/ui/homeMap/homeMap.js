@@ -64,25 +64,25 @@ Template.homeMap.onCreated(function() {
         //data.addColumn('string', 'State');
 
         var data = google.visualization.arrayToDataTable([
-            ['State'],
-            ['HN-AT'],
-            ['HN-CL'],
-            ['HN-CM'],
-            ['HN-CP'],
-            ['HN-CR'],
-            ['HN-CH'],
-            ['HN-EP'],
-            ['HN-FM'],
-            ['HN-GD'],
-            ['HN-IN'],
-            ['HN-IB'],
-            ['HN-LP'],
-            ['HN-LE'],
-            ['HN-OC'],
-            ['HN-OL'],
-            ['HN-SB'],
-            ['HN-VA'],
-            ['HN-YO']
+            ['State', 'Site'],
+            ['HN-AT', 1],
+            ['HN-CL', 2],
+            ['HN-CM', 3],
+            ['HN-CP', 4],
+            ['HN-CR', 5],
+            ['HN-CH', 6],
+            ['HN-EP', 7],
+            ['HN-FM', 8],
+            ['HN-GD', 9],
+            ['HN-IN', 10],
+            ['HN-IB', 11],
+            ['HN-LP', 12],
+            ['HN-LE', 13],
+            ['HN-OC', 14],
+            ['HN-OL', 15],
+            ['HN-SB', 16],
+            ['HN-VA', 17],
+            ['HN-YO', 18]
           ]);
 
         var wid = $( window ).width();
@@ -96,11 +96,23 @@ Template.homeMap.onCreated(function() {
             height: hei,
             resolution: 'provinces',
             backgroundColor: '#64b5f6',
-            datalessRegionColor: '#8d6e63'//,
-            //defaultColor: ,
+            datalessRegionColor: '#8d6e63'
+            //colors: '#4bb5f3', '#FADC41', '#c44949', '#d74a12', '#0e9a0e', '#55c2ac', '#7c4b91', '#fadc41', '#0d6cca', '#7c4897'
         };
+
+        options['colors'] = ['#FADC41', '#c44949', '#d74a12', '#0e9a0e', '#55c2ac', '#7c4b91', '#fadc41', '#0d6cca', '#7c4897', '#438094'];
         
+        function myClickHandler(){
+          var departamentos = geochart.getSelection();
+          for (var i = 0; i < departamentos.length; i++) {
+            alert(departamentos[i].row + ' i = '+ i);
+          };
+          alert(this);
+          Router.go('/departamento');
+        }
+
         geochart.draw(data, options);
+        google.visualization.events.addListener(geochart, 'select', myClickHandler);
     }
     google.load('visualization', '1', {packages:['geochart'], callback: drawChart});
   });
