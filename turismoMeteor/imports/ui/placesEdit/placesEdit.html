@@ -1,0 +1,51 @@
+<template name="placesEdit">
+	<div class="container fondo">
+		<br> <br>
+		{{#each places}}
+			<div class="container placeDiv">
+				<div class="row">
+					<p class="center-align">{{id}}</p>
+					<div class="card">
+						<div class="card-content">
+							<p><b>Id: </b>{{id}}</p>
+							<p>
+								<b>Location: </b>
+								<input id="latitud" type="text" class="validate" placeholder="{{location.latitud}}">
+		          				<label for="latitud">latitud</label>
+		          				<input id="longitud" type="text" class="validate" placeholder="{{location.longitud}}">
+		          				<label for="longitud">longitud</label>
+							</p>
+							<p>	
+								{{#each comments}}
+								<b>Comments:</b>
+								<textarea id="textComments" class="materialize-textarea" placeholder="{{this.commentUser}}"></textarea>
+		          				<label for="textComments">By: {{this.user}}</label>
+		          				{{/each}}
+							</p>
+							<p><b>Rating: </b>{{rating}}</p>
+							<div class="right-align card-action">
+				              <a id="post" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
+				              <i class="material-icons left">launch</i>Update</a>
+				            </div>
+				        </div>
+			        </div>
+				</div>
+			</div>
+			<br> <br> <br>
+		{{/each}}
+	</div>
+
+	<div class="card">
+            <div class="card-image">
+              <img src="images/sample-1.jpg">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+</template>
