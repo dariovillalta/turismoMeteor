@@ -1,47 +1,39 @@
 <template name="usersEdit">
-	<div class="container fondo">
+	<div class="container">
+		<br> <br>
 		{{#each users}}
-		<div class="row">
+		<div class="row fondo">
 	        <div class="col s12">
 	          <div class="card adentro">
 	            <div class="card-image">
 	              <img src="images/maxresdefault.jpg">
-	              <span class="card-title">Agregar Lugar</span>
+	              <span class="card-title">Editar Usuarios</span>
 	            </div>
 	            <div class="card-content">
 	            	<p>
-	            		<b>Id: </b>
-	            		<input id="idAdd" type="text" class="validate">
-          				<label for="idAdd">Ingrese el ID del lugar</label>
+	            		<b>Username: </b>
+	            		<input placeholder="{{username}}" id="usernameEdit" type="text" class="validate">
+          				<label for="usernameEdit">El nombre de usuario</label>
 	            	</p>
 					<p>
-						<b>Location: </b>
-						<div class="row">
-							<div class="col s6">
-								<input id="latitud" type="text" class="validate" placeholder="{{location.latitud}}">
-		      					<label for="latitud">latitud</label>
-							</div>
-							<div class="col s6">
-								<input id="longitud" type="text" class="validate" placeholder="{{location.longitud}}">
-		      					<label for="longitud">longitud</label>
-							</div>
-						</div>
+						<b>Email: </b>
+	            		<input placeholder="{{emails.[0].address}}" id="emailEdit" type="text" class="validate">
+          				<label for="emailEdit">El correo electronico del usuario</label>
 					</p>
 					<p>
-						<b>Rating: </b>
-						<p class="range-field">
-					      <input type="range" id="ratingAdd" min="0" max="5" />
-					      <label for="ratingAdd">Ingrese el rating del lugar</label>
-					    </p>
+						<b>Contrase&ntilde;a: </b>
+	            		<input placeholder="{{password}}" id="passwordEdit" type="text" class="validate">
+          				<label for="passwordEdit">Contrase&ntilde;a del usuario</label>
 					</p>
 					<div class="right-align card-action">
-		              <a id="post" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
-		              <i class="material-icons left">launch</i>Agregar</a>
+		              <a id="editar" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
+		              <i class="material-icons left">mode_edit</i>Editar</a>
 		            </div>
 	            </div>
 	          </div>
 	        </div>
 	    </div>
+	    <br> <br> <br>
 	    {{/each}}
 	</div>
 </template>

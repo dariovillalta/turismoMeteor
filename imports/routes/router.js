@@ -30,3 +30,13 @@ Router.route('/placesAdd',function(){
 Router.route('/usersEdit',function(){
     this.render("usersEdit");
 });
+
+/*Router.route('/usersEdit', {
+    name: 'usersEdit',
+    waitOn: function() {
+        return Meteor.subscribe('userList');
+    },
+    data: function() {
+        return Meteor.users.find({});       
+    }
+ });*/

@@ -2,10 +2,8 @@ import "./navBar.html";
 
 Template.navBar.rendered = function() {
 	$('#divLogIn').hide();
-	$(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').leanModal();
-  });
+  $(".button-collapse").sideNav();
+  //$('.modal-trigger').leanModal();
 
 	$('#login').click(function(){
 		$('#divResgister').fadeOut("quick");
@@ -23,15 +21,10 @@ Template.navBar.rendered = function() {
 
 Template.navBar.events({
   "click #registrarBoton"(event){
-      var Profile = {
-        firstname: $("#firstnameInput").val(),
-        lastname: $("#lastnameInput").val()
-      }
       var User = {
-        username: $("#emailInput").val(),
+        username: $("#usernameInput").val(),
         email: $("#emailInput").val(),
-        password: $("#passwordInput").val(),
-        profile: Profile
+        password: $("#passwordInput").val()
       }
       Accounts.createUser(User, function(err){
         if(err){
@@ -41,5 +34,30 @@ Template.navBar.events({
           Router.go('/');
         }
       });
+  },
+  "click .modal-trigger"(event){
+    $('#modalLogIn').openModal();
+  },
+  "click #login"(event){
+    var User = {
+      username: $("#usernameInput").val(),
+      email: $("#emailInput").val(),
+      password: $("#passwordInput").val()
+    }
+    Meteor.loginWithPassword($("#usernameInput").val(), $("#passwordInput").val(), function(error){
+      if(error){
+        Materialize.toast("El correo electrónico y/o contraseña que has introducido son incorrectos.", 4000);
+      }else{
+        Materialize.toast("Login Successfully", 4000);
+        Router.go('/');
+      }
+    });
+  }
+});
+
+Template.navBar.events({
+  'click #logout'(event){
+    Meteor.logout();
+    Router.go('/');
   }
 });
