@@ -1,39 +1,69 @@
 <template name="usersEdit">
-	<div class="container">
-		<br> <br>
-		{{#each users}}
-		<div class="row fondo">
-	        <div class="col s12">
-	          <div class="card adentro">
-	            <div class="card-image">
-	              <img src="images/maxresdefault.jpg">
-	              <span class="card-title">Editar Usuarios</span>
-	            </div>
-	            <div class="card-content">
-	            	<p>
-	            		<b>Username: </b>
-	            		<input placeholder="{{username}}" id="usernameEdit" type="text" class="validate">
-          				<label for="usernameEdit">El nombre de usuario</label>
-	            	</p>
-					<p>
-						<b>Email: </b>
-	            		<input placeholder="{{emails.[0].address}}" id="emailEdit" type="text" class="validate">
-          				<label for="emailEdit">El correo electronico del usuario</label>
-					</p>
-					<p>
-						<b>Contrase&ntilde;a: </b>
-	            		<input placeholder="{{password}}" id="passwordEdit" type="text" class="validate">
-          				<label for="passwordEdit">Contrase&ntilde;a del usuario</label>
-					</p>
-					<div class="right-align card-action">
-		              <a id="editar" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
-		              <i class="material-icons left">mode_edit</i>Editar</a>
+	<button id="registrarBoton"></button>
+	{{#if isInRole 'administrador'}}
+		<div class="container">
+			<br> <br>
+			{{#each users}}
+			<div class="row fondo">
+		        <div class="col s12">
+		          <div class="card adentro">
+		            <div class="card-image">
+		              <img src="images/maxresdefault.jpg">
+		              <span class="card-title">Editar Usuarios</span>
 		            </div>
-	            </div>
-	          </div>
-	        </div>
-	    </div>
-	    <br> <br> <br>
-	    {{/each}}
-	</div>
+		            <div class="card-content">
+		            	<p>
+		            		<b>Username: </b>
+		            		<input placeholder="{{username}}" id="usernameEdit" type="text" class="validate">
+	          				<label for="usernameEdit">El nombre de usuario</label>
+		            	</p>
+						<p>
+							<b>Email: </b>
+		            		<input placeholder="{{emails.[0].address}}" id="emailEdit" type="text" class="validate">
+	          				<label for="emailEdit">El correo electronico del usuario</label>
+						</p>
+						<p>
+							<b>Rol: </b>
+							<span class="row">
+								<p>
+				            		<input placeholder="{{roles}}" id="roleEdit" type="text" class="validate">
+			          				<label for="usernameEdit">Permisos del usuario</label>
+				            	</p>
+							</span>
+							<div class="row">
+			            		<form id="radios" action="#">
+			            			<p class="col s3 center-align">
+								      <input name="groupRol" type="radio" id="moderador" value="moderador"/>
+								      <label for="moderador">Moderador</label>
+								    </p>
+								    <p class="col s3">
+								      <input name="groupRol" type="radio" id="administrador" value="administrador"/>
+								      <label for="administrador">Administrador</label>
+								    </p>
+								</form>
+							</div>
+						</p>
+						<div class="right-align card-action">
+			              <a id="editar" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
+			              <i class="material-icons left">mode_edit</i>Editar</a>
+			            </div>
+		            </div>
+		          </div>
+		        </div>
+		    </div>
+		    <br> <br> <br>
+		    {{/each}}
+		</div>
+	{{else}}
+		<div class="container">
+			<br> <br>
+			<div class="row fondo">
+		        <div class="col s12">
+		          <p class="center-align">No tiene permisos para ver esta informacion</p>
+		          <p class="center-align"><a href="/" class="hover center-align">Regresar</a></p>
+		        </div>
+
+		    </div>
+		</div>
+	{{/if}}
 </template>

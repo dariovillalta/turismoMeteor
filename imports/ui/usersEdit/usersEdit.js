@@ -1,49 +1,48 @@
 import "./usersEdit.html";
 import { Users } from '../../api/users.js';
 
-Template.usersEdit.rendered = function() {
-};
+Template.usersEdit.onRendered(function(){
+  Meteor.subscribe('Users');
+});
 
 Template.usersEdit.helpers({
   users(){
-    return Meteor.users.find();
+    return Meteor.users.find({});
   }
 });
 
 Template.usersEdit.events({
   "click #registrarBoton"(event){
+    var placesArregloFixed = Meteor.users.find().fetch();
+    for (var i = 0; i < placesArregloFixed.length; i++) {
+        console.log(placesArregloFixed[i].username);
+        console.log(placesArregloFixed[i]);
+    }
     alert(Meteor.users.find());
     alert('fuck');
   },
   "click #editar"(event){
     var emailNuevo, userNuevo;
-    var user = Meteor.users.findOne({username: this.username});
     if ($("#usernameEdit").val() == "") {
-      userNuevo = user.username;
+      userNuevo = this.username;
     }else{
       userNuevo = $("#usernameEdit").val();
     }
     if ($("#emailEdit").val() == "") {
-      emailNuevo = user.emails[0].address;
+      emailNuevo = this.emails[0].address;
     }else{
       emailNuevo = $("#emailEdit").val();
     }
-    alert(userNuevo);
-    alert(emailNuevo);
-    /*Meteor.users.update({_id: user._id}, {
-      $set: { "username": userNuevo, "email": emailNuevo }
-    }, function(err){
-      if (err) {
-        throw new Meteor.Error('Error pppp: ' + err);
-      };
-    });*/
-    Meteor.call('users.update', user._id, userNuevo, emailNuevo, function(err){
-      if(err){
-        console.log(err);
-        Materialize.toast("Error inesperado", 4000);
-      }else {
-        Materialize.toast("Editado!", 4000);
-      }
-    });
+    var permiso = $('input[name=groupRol]:checked', '#radios').val();
+    var hola = Roles.getAllRoles().fetch();
+    if($("#usernameEdit").val() != "" || $("#emailEdit").val() != "" || permiso)
+      Meteor.call('users.update', this._id, userNuevo, emailNuevo, permiso, function(err){
+        if(err){
+          console.log(err);
+          Materialize.toast("Error inesperado", 4000);
+        }else {
+          Materialize.toast("Editado!", 4000);
+        }
+      });
   }
 });

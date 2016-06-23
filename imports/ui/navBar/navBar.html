@@ -1,26 +1,36 @@
 <template name="navBar">
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">MiHonduras</a>
+      <a href="/" class="brand-logo center">MiHonduras</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
+        {{#if isInRole 'administrador'}}
+          <li><a href="/usersEdit">Users</a></li>
+          <li><a href="/placesEdit">Edit</a></li>
+          <li><a href="/placesAdd">Add</a></li>
+        {{/if}}
+        {{#if isInRole 'moderador'}}
+          <li><a href="/placesAdd">Add</a></li>
+        {{/if}}
       	{{#if currentUser}}
-      	<li><a id="logout">Logout</a></li>
+          <li><a id="logout">Logout</a></li>
       	{{else}}
-        <li class="modal-trigger"><a href="">Iniciar Sesi&oacute;n</a></li>
-        <li><a href="/usersEdit">Users</a></li>
-        <li><a href="/placesAdd">Add</a></li>
-        <li><a href="/placesEdit">Edit</a></li>
+          <li class="modal-trigger"><a href="">Iniciar Sesi&oacute;n / Registrar</a></li>
         {{/if}}
       </ul>
       <ul class="side-nav" id="mobile-demo">
+        {{#if isInRole 'administrador'}}
+          <li><a href="/usersEdit">Users</a></li>
+          <li><a href="/placesAdd">Add</a></li>
+          <li><a href="/placesEdit">Edit</a></li>
+        {{/if}}
+        {{#if isInRole 'moderador'}}
+          <li><a href="/placesAdd">Add</a></li>
+        {{/if}}
       	{{#if currentUser}}
-      	<li><a id="logout">Logout</a></li>
+          <li><a id="logout">Logout</a></li>
       	{{else}}
-        <li ><a class="modal-trigger" href="">Iniciar Sesi&oacute;n</a></li>
-        <li><a href="/usersEdit">Users</a></li>
-        <li><a href="/placesAdd">Add</a></li>
-        <li><a href="/placesEdit">Edit</a></li>
+          <li ><a class="modal-trigger" href="">Iniciar Sesi&oacute;n/ Registrar</a></li>
         {{/if}}
       </ul>
     </div>
@@ -29,7 +39,7 @@
   <!-- Register Structure -->
   <div id="modalLogIn" class="modal">
     <div class="modal-content">
-    	<p class="center-align"><a href="" id="registrar">Registrar</a> / <a href="" id="login">Log In</a></p>
+    	<p class="center-align"><a href="" id="registrar">Registrar</a> / <a href="" id="loginTab">Log In</a></p>
     	<div id="divResgister" class="container">
 	    	<form>
 				<div class="row">

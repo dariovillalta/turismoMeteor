@@ -12,14 +12,23 @@ if(Meteor.isServer){
         };
       });
     },*/
-    'users.update'(id, userNuevo, emailNuevo){
+    'users.update'(id, userNuevo, emailNuevo, permiso){
       Meteor.users.update({_id: id}, {
-        $set: { username: userNuevo, email: emailNuevo }
+        $set: { username: userNuevo, email: emailNuevo, roles: permiso}
       }, function(err){
         if (err) {
           throw new Meteor.Error('Error pppp: ' + err);
         };
       });
     }
+  });
+
+  Accounts.onCreateUser(function(options, user){
+    user.roles = [options.roles];
+    return user;
+  });
+
+  Meteor.publish(null, function(){
+    return Meteor.users.find();
   });
 }

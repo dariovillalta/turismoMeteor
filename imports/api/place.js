@@ -27,6 +27,9 @@ Schema.place = new SimpleSchema({
   id: {
     type: String
   },
+  name: {
+    type: String
+  },
   comments: {
     type: [Schema.comment]
   },
@@ -43,17 +46,13 @@ Places.attachSchema(Schema.place);
 if(Meteor.isServer){
   Meteor.methods({
     'place.create'(place){
-      //if(this.userId){
-        Places.insert(place, function(err){
-          console.log(place);
-          if(err){
-            console.log('llegamos2');
-            throw new Meteor.Error('Error Mio: ' + err);
-          }
-        });
-      //}else {
-      //  throw new Meteor.error('No tiene permisos para realizar esta accion');
-      //}
+      Places.insert(place, function(err){
+        console.log(place);
+        if(err){
+          console.log('llegamos2');
+          throw new Meteor.Error('Error Mio: ' + err);
+        }
+      });
     },
       'place.remove'(place){
        Places.remove(place, function(err){

@@ -8,24 +8,27 @@ Template.placesAdd.helpers({
 });
 
 Template.placesAdd.events({
-  "click #registrarBoton"(event){
-      var Profile = {
-        firstname: $("#firstnameInput").val(),
-        lastname: $("#lastnameInput").val()
+  "click #post"(event){
+    var comment = [];
+    var locationVar = {
+      latitud: $("#latitud").val(),
+      longitud: $("#longitud").val()
+    }
+    name = $("#name").val();
+    var placeCreated = {
+      id: $("#idAdd").val(),
+      name: name,
+      comments: comment,
+      rating: $("#ratingAdd").val(),
+      location: locationVar
+    }
+    Meteor.call('place.create', placeCreated, function(err){
+      if(err){
+        console.log(err);
+        Materialize.toast("Error inesperado", 4000);
+      }else {
+        Materialize.toast("Libro agregado", 4000);
       }
-      var User = {
-        username: $("#emailInput").val(),
-        email: $("#emailInput").val(),
-        password: $("#passwordInput").val(),
-        profile: Profile
-      }
-      Accounts.createUser(User, function(err){
-        if(err){
-          Materialize.toast('User already exists', 4000);
-        }else{
-          Materialize.toast('Registrado Correctamente', 4000);
-          Router.go('/');
-        }
-      });
+    });
   }
 });
