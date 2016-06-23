@@ -27,6 +27,11 @@
   cursor: pointer;
 }
 
+.hover:hover{
+  cursor: pointer;
+  color: blue; 
+}
+
 .com{
   border-style: double;
 }

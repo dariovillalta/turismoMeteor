@@ -1,32 +1,47 @@
 import "./usersEdit.html";
+import { Users } from '../../api/users.js';
 
-Template.placesEdit.rendered = function() {
-};
+Template.usersEdit.onRendered(function(){
+  Meteor.subscribe('Users');
+});
 
-Template.placesEdit.helpers({
+Template.usersEdit.helpers({
   users(){
     return Meteor.users.find({});
   }
 });
 
-Template.placesEdit.events({
+Template.usersEdit.events({
   "click #registrarBoton"(event){
-      var Profile = {
-        firstname: $("#firstnameInput").val(),
-        lastname: $("#lastnameInput").val()
-      }
-      var User = {
-        username: $("#emailInput").val(),
-        email: $("#emailInput").val(),
-        password: $("#passwordInput").val(),
-        profile: Profile
-      }
-      Accounts.createUser(User, function(err){
+    var placesArregloFixed = Meteor.users.find().fetch();
+    for (var i = 0; i < placesArregloFixed.length; i++) {
+        console.log(placesArregloFixed[i].username);
+        console.log(placesArregloFixed[i]);
+    }
+    alert(Meteor.users.find());
+    alert('fuck');
+  },
+  "click #editar"(event){
+    var emailNuevo, userNuevo;
+    if ($("#usernameEdit").val() == "") {
+      userNuevo = this.username;
+    }else{
+      userNuevo = $("#usernameEdit").val();
+    }
+    if ($("#emailEdit").val() == "") {
+      emailNuevo = this.emails[0].address;
+    }else{
+      emailNuevo = $("#emailEdit").val();
+    }
+    var permiso = $('input[name=groupRol]:checked', '#radios').val();
+    var hola = Roles.getAllRoles().fetch();
+    if($("#usernameEdit").val() != "" || $("#emailEdit").val() != "" || permiso)
+      Meteor.call('users.update', this._id, userNuevo, emailNuevo, permiso, function(err){
         if(err){
-          Materialize.toast('User already exists', 4000);
-        }else{
-          Materialize.toast('Registrado Correctamente', 4000);
-          Router.go('/');
+          console.log(err);
+          Materialize.toast("Error inesperado", 4000);
+        }else {
+          Materialize.toast("Editado!", 4000);
         }
       });
   }

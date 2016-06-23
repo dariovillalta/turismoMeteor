@@ -21,3 +21,7 @@ autopublish             # Publish all data to the clients (for prototyping)
 aldeed:collection2
 materialize:materialize
 iron:router
+accounts-ui
+accounts-password
+insecure
+alanning:roles

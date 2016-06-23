@@ -1,20 +1,37 @@
 <template name="navBar">
-	<button data-target="modalLogIn" class="btn modal-trigger">Modal</button>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">MiHonduras</a>
+      <a href="/" class="brand-logo center">MiHonduras</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="/usersEdit">Users</a></li>
-        <li><a href="/placesAdd">Add</a></li>
-        <li><a href="/placesEdit">Edit</a></li>
+        {{#if isInRole 'administrador'}}
+          <li><a href="/usersEdit">Users</a></li>
+          <li><a href="/placesEdit">Edit</a></li>
+          <li><a href="/placesAdd">Add</a></li>
+        {{/if}}
+        {{#if isInRole 'moderador'}}
+          <li><a href="/placesAdd">Add</a></li>
+        {{/if}}
+      	{{#if currentUser}}
+          <li><a id="logout">Logout</a></li>
+      	{{else}}
+          <li class="modal-trigger"><a href="">Iniciar Sesi&oacute;n / Registrar</a></li>
+        {{/if}}
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="/usersEdit">Users</a></li>
-        <li><a href="/placesAdd">Add</a></li>
-        <li><a href="/placesEdit">Edit</a></li>
+        {{#if isInRole 'administrador'}}
+          <li><a href="/usersEdit">Users</a></li>
+          <li><a href="/placesAdd">Add</a></li>
+          <li><a href="/placesEdit">Edit</a></li>
+        {{/if}}
+        {{#if isInRole 'moderador'}}
+          <li><a href="/placesAdd">Add</a></li>
+        {{/if}}
+      	{{#if currentUser}}
+          <li><a id="logout">Logout</a></li>
+      	{{else}}
+          <li ><a class="modal-trigger" href="">Iniciar Sesi&oacute;n/ Registrar</a></li>
+        {{/if}}
       </ul>
     </div>
   </nav>
@@ -22,20 +39,20 @@
   <!-- Register Structure -->
   <div id="modalLogIn" class="modal">
     <div class="modal-content">
-    	<p class="center-align"><a href="" id="registrar">Registrar</a> / <a href="" id="login">Log In</a></p>
+    	<p class="center-align"><a href="" id="registrar">Registrar</a> / <a href="" id="loginTab">Log In</a></p>
     	<div id="divResgister" class="container">
 	    	<form>
 				<div class="row">
-					<input placeholder="Ingrese aqu&iacute; su nombre de usuario" id="first_name" type="text" class="validate">
-	          		<label for="first_name">Nombre de Usuario</label>
+					<input placeholder="Ingrese aqu&iacute; su nombre de usuario" id="usernameInput" type="text" class="validate">
+	          		<label for="usernameInput">Nombre de Usuario</label>
 				</div>
 				<div class="row">
-					<input placeholder="Ingrese aqu&iacute; su contrase&ntilde;a" id="first_name" type="text" class="validate">
-		          	<label for="first_name">Contrase&ntilde;a</label>
+					<input placeholder="Ingrese aqu&iacute; su contrase&ntilde;a" id="passwordInput" type="password" class="validate">
+		          	<label for="passwordInput">Contrase&ntilde;a</label>
 				</div>
 				<div class="row">
-					<input placeholder="Ingrese aqu&iacute; su correo electronico" id="first_name" type="text" class="validate">
-		          	<label for="first_name">Correo Electronico</label>
+					<input placeholder="Ingrese aqu&iacute; su correo electronico" id="emailInput" type="text" class="validate">
+		          	<label for="emailInput">Correo Electronico</label>
 				</div>
 			</form>
 			<div class="center-align">
@@ -46,16 +63,16 @@
     	<div id="divLogIn" class="container">
 	    	<form>
 				<div class="row">
-					<input placeholder="Ingrese aqu&iacute; su nombre de usuario" id="first_name" type="text" class="validate">
-	          		<label for="first_name">Nombre de Usuario</label>
+					<input placeholder="Ingrese aqu&iacute; su nombre de usuario" id="usernameInputLogin" type="text" class="validate">
+	          		<label for="usernameInputLogin">Nombre de Usuario</label>
 				</div>
 				<div class="row">
-					<input placeholder="Ingrese aqu&iacute; su contrase&ntilde;a" id="first_name" type="text" class="validate">
-		          	<label for="first_name">Contrase&ntilde;a</label>
+					<input placeholder="Ingrese aqu&iacute; su contrase&ntilde;a" id="passwordInputLogin" type="password" class="validate">
+		          	<label for="passwordInputLogin">Contrase&ntilde;a</label>
 				</div>
 			</form>
 			<div class="center-align">
-		      <a class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn"><i class="material-icons left">person_pin</i>Iniciar Sesi&otilde;n</a>
+		      <a id="login" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn"><i class="material-icons left">person_pin</i>Iniciar Sesi&otilde;n</a>
 		    </div>
     	</div>  <!-- Div Log In-->
     </div>

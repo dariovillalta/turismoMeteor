@@ -15,8 +15,10 @@ Router.route('/',function(){
     this.render("homeMap");
 });
 
-Router.route('/departamento',function(){
+Router.route('/departamento/:_id',function(){
     this.render("departmentMap");
+}, {
+    name: 'depart'
 });
 
 Router.route('/placesEdit',function(){
@@ -30,3 +32,13 @@ Router.route('/placesAdd',function(){
 Router.route('/usersEdit',function(){
     this.render("usersEdit");
 });
+
+/*Router.route('/usersEdit', {
+    name: 'usersEdit',
+    waitOn: function() {
+        return Meteor.subscribe('userList');
+    },
+    data: function() {
+        return Meteor.users.find({});       
+    }
+ });*/

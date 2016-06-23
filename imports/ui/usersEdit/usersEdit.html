@@ -1,47 +1,69 @@
 <template name="usersEdit">
-	<div class="container fondo">
-		{{#each users}}
-		<div class="row">
-	        <div class="col s12">
-	          <div class="card adentro">
-	            <div class="card-image">
-	              <img src="images/maxresdefault.jpg">
-	              <span class="card-title">Agregar Lugar</span>
-	            </div>
-	            <div class="card-content">
-	            	<p>
-	            		<b>Id: </b>
-	            		<input id="idAdd" type="text" class="validate">
-          				<label for="idAdd">Ingrese el ID del lugar</label>
-	            	</p>
-					<p>
-						<b>Location: </b>
-						<div class="row">
-							<div class="col s6">
-								<input id="latitud" type="text" class="validate" placeholder="{{location.latitud}}">
-		      					<label for="latitud">latitud</label>
-							</div>
-							<div class="col s6">
-								<input id="longitud" type="text" class="validate" placeholder="{{location.longitud}}">
-		      					<label for="longitud">longitud</label>
-							</div>
-						</div>
-					</p>
-					<p>
-						<b>Rating: </b>
-						<p class="range-field">
-					      <input type="range" id="ratingAdd" min="0" max="5" />
-					      <label for="ratingAdd">Ingrese el rating del lugar</label>
-					    </p>
-					</p>
-					<div class="right-align card-action">
-		              <a id="post" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
-		              <i class="material-icons left">launch</i>Agregar</a>
+	<button id="registrarBoton"></button>
+	{{#if isInRole 'administrador'}}
+		<div class="container">
+			<br> <br>
+			{{#each users}}
+			<div class="row fondo">
+		        <div class="col s12">
+		          <div class="card adentro">
+		            <div class="card-image">
+		              <img src="images/maxresdefault.jpg">
+		              <span class="card-title">Editar Usuarios</span>
 		            </div>
-	            </div>
-	          </div>
-	        </div>
-	    </div>
-	    {{/each}}
-	</div>
+		            <div class="card-content">
+		            	<p>
+		            		<b>Username: </b>
+		            		<input placeholder="{{username}}" id="usernameEdit" type="text" class="validate">
+	          				<label for="usernameEdit">El nombre de usuario</label>
+		            	</p>
+						<p>
+							<b>Email: </b>
+		            		<input placeholder="{{emails.[0].address}}" id="emailEdit" type="text" class="validate">
+	          				<label for="emailEdit">El correo electronico del usuario</label>
+						</p>
+						<p>
+							<b>Rol: </b>
+							<span class="row">
+								<p>
+				            		<input placeholder="{{roles}}" id="roleEdit" type="text" class="validate">
+			          				<label for="usernameEdit">Permisos del usuario</label>
+				            	</p>
+							</span>
+							<div class="row">
+			            		<form id="radios" action="#">
+			            			<p class="col s3 center-align">
+								      <input name="groupRol" type="radio" id="moderador" value="moderador"/>
+								      <label for="moderador">Moderador</label>
+								    </p>
+								    <p class="col s3">
+								      <input name="groupRol" type="radio" id="administrador" value="administrador"/>
+								      <label for="administrador">Administrador</label>
+								    </p>
+								</form>
+							</div>
+						</p>
+						<div class="right-align card-action">
+			              <a id="editar" class="modal-action modal-close waves-green btn-flat waves-effect waves-light btn">
+			              <i class="material-icons left">mode_edit</i>Editar</a>
+			            </div>
+		            </div>
+		          </div>
+		        </div>
+		    </div>
+		    <br> <br> <br>
+		    {{/each}}
+		</div>
+	{{else}}
+		<div class="container">
+			<br> <br>
+			<div class="row fondo">
+		        <div class="col s12">
+		          <p class="center-align">No tiene permisos para ver esta informacion</p>
+		          <p class="center-align"><a href="/" class="hover center-align">Regresar</a></p>
+		        </div>
+
+		    </div>
+		</div>
+	{{/if}}
 </template>
