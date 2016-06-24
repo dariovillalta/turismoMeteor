@@ -306,9 +306,7 @@ Template.departmentMap.onRendered(function() {
 							//Materialize.toast("Libro agregado", 4000);
 						}
 					});
-					alert('puta1');
 			    }
-			    alert('puta2');
 			}
 			/*var difference = [];
 			for (var i = 0; i < placesArray.length; i--) {
@@ -409,7 +407,6 @@ Template.departmentMap.onRendered(function() {
 Template.departmentMap.events({
   "click #post": function(){
   	var lugar = Places.findOne({id: idGlobal});
-  	console.log(lugar);
   	var comentarios = lugar.comments;
   	var comentario = {
   		commentUser: $('#textarea1').val(),
@@ -430,7 +427,6 @@ Template.departmentMap.events({
   }, //
   "click .theImg": function(e){
   	var puntuacion = $(e.currentTarget).data('value') + 1;
-  	console.log($(e.currentTarget).data('value'));
   	Meteor.call('place.updateRating', idGlobal, puntuacion, function(err){
 		if(err){
 			console.log(err);
@@ -443,10 +439,6 @@ Template.departmentMap.events({
 	});
   }, 
   "click #directions": function(e){
-  	alert(e);
-  	console.log('llegue');
-  	console.log( $(e.currentTarget).data('data-value') );
-  	console.log(e);
   	/*directionsService.route({
   		origin: ,
   		destination: ,
