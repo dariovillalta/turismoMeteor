@@ -44,7 +44,6 @@ Template.homeMap.onCreated(function() {
 
       function myClickHandler(){
         var departamentos = geochart.getSelection();
-        alert('row '+departamentos[0].row);
         Router.go('depart', {_id: departamentos[0].row+1} );
       }
 
